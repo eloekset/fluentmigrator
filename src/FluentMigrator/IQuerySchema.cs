@@ -28,5 +28,6 @@ namespace FluentMigrator
         bool SequenceExists(string schemaName, string sequenceName);
         bool DefaultValueExists(string schemaName, string tableName, string columnName, object defaultValue);
         string DatabaseType { get; }
+        DatabaseType DatabaseTypeEnum { get; }
     }
 }

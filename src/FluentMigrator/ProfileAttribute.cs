@@ -11,5 +11,9 @@ namespace FluentMigrator
         {
             ProfileName = profileName;
         }
+
+        public ProfileAttribute(DatabaseType databaseType)
+            : base(databaseType.ToString())
+        { }
     }
 }

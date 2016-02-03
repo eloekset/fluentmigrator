@@ -56,6 +56,19 @@ namespace FluentMigrator.Builders.IfDatabase
         }
 
         /// <summary>
+        /// Constricts a new instance of a <see cref="IfDatabaseExpressionRoot"/> that will only add expressions to the provided <see cref="context"/> if <see cref="databaseType"/> matches the migration processor
+        /// </summary>
+        /// <remarks>If the database type does not apply then a <seealso cref="NullIfDatabaseProcessor"/> will be used as a container to void any fluent expressions that would have been executed</remarks>
+        /// <param name="context">The context to add expressions to if the database type applies</param>
+        /// <param name="databaseType">The database type that the expressions relate to</param>
+        public IfDatabaseExpressionRoot(IMigrationContext context, params DatabaseType[] databaseType)
+        {
+            if (databaseType == null) throw new ArgumentNullException("databaseType");
+
+            _context = DatabaseTypeApplies(context, databaseType) ? context : new MigrationContext(new MigrationConventions(), new NullIfDatabaseProcessor(), context.MigrationAssemblies, context.ApplicationContext, "");
+        }
+
+        /// <summary>
         /// Alter the schema of an existing object
         /// </summary>
         public IAlterExpressionRoot Alter
@@ -129,11 +142,41 @@ namespace FluentMigrator.Builders.IfDatabase
                 string currentDatabaseType = context.QuerySchema.DatabaseType;
 
                 return (from db in databaseType
-                        where currentDatabaseType.StartsWith(db, StringComparison.InvariantCultureIgnoreCase)
+                        where MatchesDatabaseType(currentDatabaseType, db)
                         select db).Any();
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Checks if the database type matches the name of the context migration processor
+        /// </summary>
+        /// <param name="context">The context to evaluate</param>
+        /// <param name="databaseType">The type to be checked</param>
+        /// <returns><c>True</c> if the database type applies, <c>False</c> if not</returns>
+        private static bool DatabaseTypeApplies(IMigrationContext context, params DatabaseType[] databaseType)
+        {
+            if (context.QuerySchema is IMigrationProcessor)
+            {
+                DatabaseType currentDatabaseType = context.QuerySchema.DatabaseTypeEnum;
+
+                return (from db in databaseType
+                        where MatchesDatabaseType(currentDatabaseType, db)
+                        select db).Any();
+            }
+
+            return false;
+        }
+
+        private static bool MatchesDatabaseType(string dbType1, string dbType2)
+        {
+            return dbType1.StartsWith(dbType2, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        private static bool MatchesDatabaseType(DatabaseType dbType1, DatabaseType dbType2)
+        {
+            return (dbType1 & dbType2) == dbType2;
         }
     }
 }
