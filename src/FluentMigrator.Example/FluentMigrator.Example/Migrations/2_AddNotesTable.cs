@@ -26,15 +26,21 @@ namespace FluentMigrator.Example.Migrations
 		public override void Up()
 		{
 			Create.Table("Notes")
-				.WithIdColumn()
+				.WithColumn("NotesID").AsGuid()
 				.WithColumn("Body").AsString(4000).NotNullable()
 				.WithTimeStamps()
 				.WithColumn("User_id").AsInt32();
+
+            Create.Index("IDX_Notes_CreatedAt").OnTable("Notes")
+                .WithOptions().ApplyOnline(Model.OnlineMode.On)
+                .WithOptions().Clustered()
+                .OnColumn("CreatedAt");
 		}
 
 		public override void Down()
 		{
 			Delete.Table("Notes");
+            Delete.Index("IDX_Notes_CreatedAt").WithOptions().ApplyOnline(Model.OnlineMode.On);
 		}
 	}
 }

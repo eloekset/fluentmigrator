@@ -37,10 +37,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentMigrator, Version=0.9.0.42, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\FluentMigrator.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,8 +53,17 @@
   <ItemGroup>
     <Compile Include="Migrations\1_AddGTDTables.cs" />
     <Compile Include="Migrations\2_AddNotesTable.cs" />
+    <Compile Include="Migrations\3_DropIndex.cs" />
+    <Compile Include="Migrations\4_AlterTable.cs" />
+    <Compile Include="Migrations\5_DropPrimaryKey.cs" />
     <Compile Include="Migrations\MigrationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FluentMigrator\FluentMigrator.csproj">
+      <Project>{fd9410f9-6fea-47f7-a78e-b4f6fb0539b8}</Project>
+      <Name>FluentMigrator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
