@@ -17,6 +17,8 @@
 #endregion
 
 
+using FluentMigrator.Model;
+
 namespace FluentMigrator.Builders.Alter.Table
 {
     public interface IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax :
@@ -27,5 +29,6 @@ namespace FluentMigrator.Builders.Alter.Table
         /// The value to set against existing rows for the new column.  Only used for creating columns, not altering them.
         /// </summary>
         IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax SetExistingRowsTo(object value);
+        IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax ApplyOnline(OnlineMode mode);
     }
 }

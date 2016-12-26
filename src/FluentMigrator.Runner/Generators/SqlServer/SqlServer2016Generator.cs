@@ -34,5 +34,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
 
             return sql.ToString();
         }
+
+        public override string Generate(AlterColumnExpression expression)
+        {
+            return base.Generate(expression);
+            // TODO: Apply "WITH (ONLINE = {0})"
+        }
     }
 }

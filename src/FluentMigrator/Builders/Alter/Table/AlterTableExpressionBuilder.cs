@@ -44,6 +44,8 @@ namespace FluentMigrator.Builders.Alter.Table
         public ForeignKeyDefinition CurrentForeignKey { get; set; }
         public ColumnExpressionBuilderHelper ColumnHelper { get; set; }
 
+        public OnlineMode ApplyOnline { get; set; }
+
         public IAlterTableAddColumnOrAlterColumnSyntax InSchema(string schemaName)
         {
             Expression.SchemaName = schemaName;
@@ -321,6 +323,12 @@ namespace FluentMigrator.Builders.Alter.Table
         public override ColumnDefinition GetColumnForType()
         {
             return CurrentColumn;
+        }
+
+        IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax.ApplyOnline(OnlineMode mode)
+        {
+            this.ApplyOnline = mode;
+            return this;
         }
 
         string IColumnExpressionBuilder.SchemaName
