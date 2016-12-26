@@ -32,12 +32,12 @@ namespace FluentMigrator.Example.Migrations
 				.WithColumn("User_id").AsInt32();
 
             Create.Index("IDX_Notes_CreatedAt").OnTable("Notes")
-                .WithOptions().ApplyOnline(Model.OnlineMode.On)
+                .WithOptions().ApplyOnline()
                 .WithOptions().Clustered()
                 .OnColumn("CreatedAt");
 
             Create.PrimaryKey("PK_Notes").OnTable("Notes")
-                .Column("NotesId").ApplyOnline(Model.OnlineMode.On);
+                .Column("NotesId").ApplyOnline();
 		}
 
 		public override void Down()
