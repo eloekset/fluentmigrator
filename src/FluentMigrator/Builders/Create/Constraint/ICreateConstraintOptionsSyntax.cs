@@ -32,6 +32,6 @@ namespace FluentMigrator.Builders.Create.Constraint
         /// OFF
         /// Table locks are applied and the table is unavailable for the duration of the index operation.
         /// </param>
-        ICreateConstraintOptionsSyntax ApplyOnline(OnlineMode mode);
+        ICreateConstraintOptionsSyntax ApplyOnline(OnlineMode mode = OnlineMode.On);
     }
 }
