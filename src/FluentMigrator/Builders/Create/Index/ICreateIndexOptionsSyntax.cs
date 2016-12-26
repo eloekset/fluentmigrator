@@ -35,6 +35,6 @@ namespace FluentMigrator.Builders.Create.Index
         /// OFF
         /// Table locks are applied and the table is unavailable for the duration of the index operation.
         /// </param>
-        ICreateIndexOnColumnSyntax ApplyOnline(OnlineMode mode);
+        ICreateIndexOnColumnSyntax ApplyOnline(OnlineMode mode = OnlineMode.On);
     }
 }
