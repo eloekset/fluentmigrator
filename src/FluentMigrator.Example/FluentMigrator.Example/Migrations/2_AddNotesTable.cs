@@ -42,8 +42,9 @@ namespace FluentMigrator.Example.Migrations
 
 		public override void Down()
 		{
-			Delete.Table("Notes");
-            Delete.Index("IDX_Notes_CreatedAt").WithOptions().ApplyOnline(Model.OnlineMode.On);
+            Delete.PrimaryKey("PK_Notes").FromTable("Notes");
+            // Delete.Index("IDX_Notes_CreatedAt").OnTable("Notes").WithOptions().ApplyOnline(Model.OnlineMode.On);
+            Delete.Table("Notes");
 		}
 	}
 }
