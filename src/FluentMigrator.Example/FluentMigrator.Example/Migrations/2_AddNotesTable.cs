@@ -26,7 +26,7 @@ namespace FluentMigrator.Example.Migrations
 		public override void Up()
 		{
 			Create.Table("Notes")
-				.WithColumn("NotesID").AsGuid()
+				.WithColumn("NotesId").AsGuid()
 				.WithColumn("Body").AsString(4000).NotNullable()
 				.WithTimeStamps()
 				.WithColumn("User_id").AsInt32();
@@ -35,6 +35,9 @@ namespace FluentMigrator.Example.Migrations
                 .WithOptions().ApplyOnline(Model.OnlineMode.On)
                 .WithOptions().Clustered()
                 .OnColumn("CreatedAt");
+
+            Create.PrimaryKey("PK_Notes").OnTable("Notes")
+                .Column("NotesId").ApplyOnline(Model.OnlineMode.On);
 		}
 
 		public override void Down()
