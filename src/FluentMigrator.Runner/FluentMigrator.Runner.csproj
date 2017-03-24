@@ -4,7 +4,7 @@
     <Description>This is a temporary .NET Core port of FluentMigrator for Serenity applications. It will only be used until an official version is out.</Description>
     <VersionPrefix>1.6.901</VersionPrefix>
     <Authors>Volkan Ceylan</Authors>
-    <TargetFrameworks>netstandard1.6;net35</TargetFrameworks>
+    <TargetFrameworks>netstandard1.6</TargetFrameworks>
     <AssemblyName>FluentMigrator.Runner</AssemblyName>
     <PackageId>FluentMigrator.Runner</PackageId>
     <RepositoryType>git</RepositoryType>
