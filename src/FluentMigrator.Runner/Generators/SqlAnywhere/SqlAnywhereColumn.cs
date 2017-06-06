@@ -73,7 +73,7 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
                 case SystemMethods.CurrentDateTime:
                     return "GETDATE()";
                 case SystemMethods.CurrentUTCDateTime:
-                    return "GETUTCDATE()";
+                    return "CURRENT UTC TIMESTAMP";
                 case SystemMethods.CurrentUser:
                     return "CURRENT_USER";
             }
