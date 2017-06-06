@@ -1,6 +1,9 @@
-﻿using FluentMigrator.Runner.Generators.SqlAnywhere;
+﻿using FluentMigrator.Expressions;
+using FluentMigrator.Model;
+using FluentMigrator.Runner.Generators.SqlAnywhere;
 using NUnit.Framework;
 using Shouldly;
+using System.Data;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
 {
@@ -107,6 +110,18 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
 
             var result = Generator.Generate(expression);
             result.ShouldBe("CREATE TABLE [dbo].[TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL DEFAULT 'Default', [TestColumn2] INTEGER NOT NULL DEFAULT 0)");
+        }
+
+        [Test]
+        [Category("SQLAnywhere"), Category("SQLAnywhere16"), Category("Generator"), Category("Table")]
+        public void CanCreateTableWithDefaultCurrentUtcTimestampWithDefaultSchema()
+        {
+            CreateTableExpression expression = new CreateTableExpression() { TableName = GeneratorTestHelper.TestTableName1, };
+            expression.Columns.Add(new ColumnDefinition { Name = GeneratorTestHelper.TestColumnName1, Type = DbType.String, DefaultValue = "Default", TableName = GeneratorTestHelper.TestTableName1 });
+            expression.Columns.Add(new ColumnDefinition { Name = GeneratorTestHelper.TestColumnName2, Type = DbType.DateTimeOffset, DefaultValue = SystemMethods.CurrentUTCDateTime, TableName = GeneratorTestHelper.TestTableName1 });
+
+            var result = Generator.Generate(expression);
+            result.ShouldBe("CREATE TABLE [dbo].[TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL DEFAULT 'Default', [TestColumn2] TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT UTC TIMESTAMP)");
         }
 
         [Test]
