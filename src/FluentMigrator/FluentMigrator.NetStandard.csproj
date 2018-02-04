@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+    <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
     <Version>1.6.2.0</Version>
     <Copyright>Copyright - Sean Chambers 2008-2016</Copyright>
     <PackageLicenseUrl>https://github.com/fluentmigrator/fluentmigrator/blob/master/LICENSE.txt</PackageLicenseUrl>
@@ -75,4 +76,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <!-- Need to conditionally bring in references for the .NET Framework 4.5.2 target -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'NET452'">
+    
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'NETSTANDARD2.0'">
+    
+  </ItemGroup>
 </Project>
