@@ -6,6 +6,7 @@
     <AssemblyName>FluentMigrator.Runner</AssemblyName>
     <RootNamespace>FluentMigrator.Runner</RootNamespace>
     <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../FluentMigrator.snk</AssemblyOriginatorKeyFile>
     <Copyright>Copyright - Sean Chambers 2008-2016</Copyright>
     <Product>FluentMigrator</Product>
@@ -29,6 +30,7 @@
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.4.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.1.0" />
   </ItemGroup>
 
 </Project>
