@@ -18,8 +18,33 @@ namespace FluentMigrator.Runner.Processors
         protected override DbProviderFactory CreateFactory()
         {
 #if NETSTANDARD2_0
-            var factoryType = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName == assemblyName).First().GetType(dbProviderFactoryTypeName);
-            return (DbProviderFactory)Activator.CreateInstance(factoryType);
+            var dbProviderAssembly = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith(assemblyName)).FirstOrDefault();
+
+            if (dbProviderAssembly == null)
+            {
+                throw new Exception($"No DB provider assembly named {assemblyName} is loaded.");
+            }
+
+            var factoryType = dbProviderAssembly.GetType(dbProviderFactoryTypeName);
+
+            if (factoryType == null)
+            {
+                throw new Exception($"No DB provider factory named {dbProviderFactoryTypeName} found in assembly {assemblyName}.");
+            }
+
+            if (factoryType.GetConstructors(System.Reflection.BindingFlags.Public).Any())
+            {
+                return (DbProviderFactory)Activator.CreateInstance(factoryType);
+            }
+
+            var singletonField = factoryType.GetField("Instance", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+
+            if (singletonField != null)
+            {
+                return (DbProviderFactory)singletonField.GetValue(factoryType);
+            }
+
+            throw new Exception($"Not able to create an instance of {dbProviderFactoryTypeName}.");
 #else
             return (DbProviderFactory)AppDomain.CurrentDomain.CreateInstanceAndUnwrap(assemblyName, dbProviderFactoryTypeName);
 #endif
