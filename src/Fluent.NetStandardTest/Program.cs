@@ -25,10 +25,11 @@ namespace Fluent.NetStandardTest
 
         private static void ExecuteMigrations(IAnnouncer announcer)
         {
+            Microsoft.Data.Sqlite.SqliteFactory factory = Microsoft.Data.Sqlite.SqliteFactory.Instance;
             RunnerContext = new RunnerContext(announcer)
             {
-                Database = "SQLServer", //SQLite",
-                Connection = @"Data Source=(local)\SQL2016;Initial Catalog=TestFluent;Integrated Security=true", //@"Data Source=.\dbfile.db",
+                Database = "SQLite",
+                Connection = @"Data Source=.\dbfile.db",
                 Targets = new string[] { Assembly.GetExecutingAssembly().FullName },
                 Task = "migrate:up",
             };
