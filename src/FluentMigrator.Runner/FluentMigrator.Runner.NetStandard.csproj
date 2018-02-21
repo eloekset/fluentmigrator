@@ -9,7 +9,7 @@
     <AssemblyOriginatorKeyFile>../FluentMigrator.snk</AssemblyOriginatorKeyFile>
     <Copyright>Copyright - Sean Chambers 2008-2016</Copyright>
     <Product>FluentMigrator</Product>
-    <Version>1.6.2.0</Version>
+    <Version>2.0.0.0-preview</Version>
     <Authors>FluentMigrator</Authors>
     <Company>FluentMigrator</Company>
     <PackageProjectUrl>https://github.com/fluentmigrator/fluentmigrator/wiki</PackageProjectUrl>
