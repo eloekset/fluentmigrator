@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Migrate</AssemblyName>
+    <RootNamespace>FluentMigrator.Console</RootNamespace>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <PackageId>FluentMigrator.Runner.Console</PackageId>
+    <Authors>FluentMigrator</Authors>
+    <Version>2.0.0.0-preview</Version>
+    <Company>FluentMigrator</Company>
+    <Product>FluentMigrator</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentMigrator.Runner\FluentMigrator.Runner.NetStandard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="*.config" Exclude="app.35.config; app.config" />
+  </ItemGroup>
+
+</Project>

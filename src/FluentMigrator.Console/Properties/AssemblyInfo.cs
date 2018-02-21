@@ -18,5 +18,7 @@
 
 using System.Reflection;
 
+#if !NETCOREAPP2_0
 [assembly: AssemblyTitle("FluentMigrator.Console")]
+#endif
 [assembly: AssemblyDescription("FluentMigrator console application")]

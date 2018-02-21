@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentMigrator.NetStandard"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentMigrator.Runner.NetStandard", "src\FluentMigrator.Runner\FluentMigrator.Runner.NetStandard.csproj", "{959D10C7-95F1-43AC-920C-C70E8BE73F60}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentMigrator.Console.NetStandard", "src\FluentMigrator.Console\FluentMigrator.Console.NetStandard.csproj", "{ECC6E4E5-80A8-4B5F-96AF-DB20B416446B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{959D10C7-95F1-43AC-920C-C70E8BE73F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959D10C7-95F1-43AC-920C-C70E8BE73F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959D10C7-95F1-43AC-920C-C70E8BE73F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC6E4E5-80A8-4B5F-96AF-DB20B416446B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC6E4E5-80A8-4B5F-96AF-DB20B416446B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC6E4E5-80A8-4B5F-96AF-DB20B416446B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC6E4E5-80A8-4B5F-96AF-DB20B416446B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
