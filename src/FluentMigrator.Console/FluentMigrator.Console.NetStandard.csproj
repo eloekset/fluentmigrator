@@ -5,11 +5,11 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Migrate</AssemblyName>
     <RootNamespace>FluentMigrator.Console</RootNamespace>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
+    <FileVersion>2.0.2.0</FileVersion>
     <PackageId>FluentMigrator.Runner.Console</PackageId>
     <Authors>FluentMigrator</Authors>
-    <Version>2.0.0.0-preview</Version>
+    <Version>2.0.2-preview</Version>
     <Company>FluentMigrator</Company>
     <Product>FluentMigrator</Product>
   </PropertyGroup>
