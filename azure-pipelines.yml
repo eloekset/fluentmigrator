@@ -28,8 +28,10 @@ steps:
   env:
     Action: '##vso[build.updatebuildnumber]'
     BuildVersion: $(GitVersion.NuGetVersionV2)
+    assemblyVersion: $(GitVersion.SemVer)
 
 - script: echo "The build number is:" $(build.buildNumber)
+- script: echo "Assembly version is:" $(assemblyVersion)
 
 - task: NuGetCommand@2
   inputs:
@@ -40,6 +42,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    msbuildArgs: 'Version $(assemblyVersion)'
 
 - task: VSTest@2
   inputs:
@@ -58,7 +61,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
-    arguments: '-c $(buildConfiguration) -r win7-x86 -o "$(artifactsStagingDirectory)/publish/tools/net461/x86" -p:Platform=x86 -p:TargetFramework=net461'
+    arguments: '-c $(buildConfiguration) -r win7-x86 -o "$(artifactsStagingDirectory)/publish/tools/net461/x86" -p:Platform=x86 -p:TargetFramework=net461 -p:Version=assemblyVersion'
     zipAfterPublish: false
     modifyOutputPath: false
 
@@ -67,7 +70,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
-    arguments: '-c $(buildConfiguration) -r win7-x64 -o "$(artifactsStagingDirectory)/publish/tools/net461/x64" -p:Platform=x64 -p:TargetFramework=net461'
+    arguments: '-c $(buildConfiguration) -r win7-x64 -o "$(artifactsStagingDirectory)/publish/tools/net461/x64" -p:Platform=x64 -p:TargetFramework=net461 -p:Version=assemblyVersion'
     zipAfterPublish: false
     modifyOutputPath: false
 
@@ -76,7 +79,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
-    arguments: '-c $(buildConfiguration) -r any -o "$(artifactsStagingDirectory)/publish/tools/net461/any" -p:Platform=AnyCpu -p:TargetFramework=net461'
+    arguments: '-c $(buildConfiguration) -r any -o "$(artifactsStagingDirectory)/publish/tools/net461/any" -p:Platform=AnyCpu -p:TargetFramework=net461 -p:Version=assemblyVersion'
     zipAfterPublish: false
     modifyOutputPath: false
 
