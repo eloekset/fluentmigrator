@@ -31,3 +31,57 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/FluentMigrator.sln'
+    versioningScheme: 'byBuildNumber'
+    includeSymbols: true
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
+    arguments: '-c $(buildConfiguration) -r win7-x86 -o "$(artifactsStagingDirectory)/publish/tools/net461/x86" -p:Platform=x86 -p:TargetFramework=net461'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
+    arguments: '-c $(buildConfiguration) -r win7-x64 -o "$(artifactsStagingDirectory)/publish/tools/net461/x64" -p:Platform=x64 -p:TargetFramework=net461'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
+    arguments: '-c $(buildConfiguration) -r any -o "$(artifactsStagingDirectory)/publish/tools/net461/any" -p:Platform=AnyCpu -p:TargetFramework=net461'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'publish/FluentMigrator.Console.nuspec'
+    versioningScheme: 'byBuildNumber'
+    buildProperties: '-OutputDirectory "$(buildArtifactsStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'publish/FluentMigrator.Tools.nuspec'
+    versioningScheme: 'byBuildNumber'
+    buildProperties: '-OutputDirectory "$(buildArtifactsStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'f115edaf-9327-4e7d-b110-b8479c7c3a1b'
