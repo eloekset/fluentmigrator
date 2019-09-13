@@ -15,6 +15,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: echo "The build number is:" $(build.buildNumber)
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
