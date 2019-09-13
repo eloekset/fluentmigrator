@@ -29,9 +29,11 @@ steps:
     Action: '##vso[build.updatebuildnumber]'
     BuildVersion: $(GitVersion.NuGetVersionV2)
 
-- script: echo '##vso[task.setvariable variable=assemblyVersion]$(GitVersion.SemVer)'
+- script: echo '##vso[task.setvariable variable=assemblyVersion]$(GitVersion.AssemblySemVer)'
+- script: echo '##vso[task.setvariable variable=assemblyFileVersion]$(GitVersion.MajorMinorPath).0'
 - script: echo "The build number is:" $(build.buildNumber)
 - script: echo "Assembly version is:" $(assemblyVersion)
+- script: echo "Assembly file version is:" $(assemblyFileVersion)
 
 - task: NuGetCommand@2
   inputs:
@@ -42,7 +44,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: 'Version $(assemblyVersion)'
+    msbuildArgs: '/p:Version=$(assemblyVersion) /p:AssemblyFileVersion=$(assemblyFileVersion) /p:AssemblyInformationalVersion=$(build.buildNumber)'
 
 - task: VSTest@2
   inputs:
