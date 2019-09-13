@@ -39,12 +39,18 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+#- task: VSBuild@1
+#  inputs:
+#    solution: '$(solution)'
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
+#    msbuildArgs: '/p:Version="$(assemblyVersion)" /p:AssemblyFileVersion="$(assemblyFileVersion)" /p:AssemblyInformationalVersion="$(build.buildNumber)"'
+
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:Version="$(assemblyVersion)" /p:AssemblyFileVersion="$(assemblyFileVersion)" /p:AssemblyInformationalVersion="$(build.buildNumber)"'
+    command: 'build'
+    projects: '**/FluentMigrator.sln'
+    arguments: '-p:Platform="$(buildPlatform)" -p:Configuration="$(buildConfiguration)" -p:Version="$(assemblyVersion)" "-p:AssemblyFileVersion="$(assemblyFileVersion)" -p:AssemblyInformationalVersion="$(build.buildNumber)"'
 
 - task: VSTest@2
   inputs:
