@@ -21,7 +21,7 @@ steps:
   displayName: 'GitVersion'
   inputs:
     runtime: 'core'
-    updateAssemblyInfo: true
+    updateAssemblyInfo: false
 
 - script: echo %Action%%BuildVersion%
   displayName: 'Set build version'
