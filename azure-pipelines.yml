@@ -64,7 +64,7 @@ steps:
     nobuild: true
     includesymbols: true
     versioningScheme: 'off'
-    buildProperties: '-p:Version=$(build.buildNumber)'
+    buildProperties: '/p:Version="$(build.buildNumber)"'
 
 #- task: NuGetCommand@2
 #  inputs:
