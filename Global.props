@@ -4,9 +4,6 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>3.0.0</VersionPrefix>
-    <AssemblyVersion>3.0.1</AssemblyVersion>
-    <AssemblyFileVersion>3.0.1.0</AssemblyFileVersion>
-    <AssemblyInformationalVersion>3.0.1</AssemblyInformationalVersion>
     <Product>FluentMigrator</Product>
     <Copyright>Sean Chambers and the FluentMigrator project 2008-2018</Copyright>
     <Company>FluentMigrator Project</Company>
