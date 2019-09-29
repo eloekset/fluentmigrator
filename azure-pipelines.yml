@@ -103,7 +103,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'publish'
-    Contents: '**/*.nuspec'
+    Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/publish'
 
 - task: NuGetCommand@2
