@@ -78,7 +78,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
-    arguments: '-c $(buildConfiguration) -r win7-x86 -o "$(artifactStagingDirectory)/publish/tools/net461/x86" -p:Platform=x86 -p:TargetFramework=net461 -p:Version=$(assemblyVersion)'
+    arguments: '-c $(buildConfiguration) -r win7-x86 -o "$(Build.ArtifactStagingDirectory)/publish/tools/net461/x86" -p:Platform=x86 -p:TargetFramework=net461 -p:Version=$(assemblyVersion)'
     zipAfterPublish: false
     modifyOutputPath: false
 
@@ -87,7 +87,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
-    arguments: '-c $(buildConfiguration) -r win7-x64 -o "$(artifactStagingDirectory)/publish/tools/net461/x64" -p:Platform=x64 -p:TargetFramework=net461 -p:Version=$(assemblyVersion)'
+    arguments: '-c $(buildConfiguration) -r win7-x64 -o "$(Build.ArtifactStagingDirectory)/publish/tools/net461/x64" -p:Platform=x64 -p:TargetFramework=net461 -p:Version=$(assemblyVersion)'
     zipAfterPublish: false
     modifyOutputPath: false
 
@@ -96,7 +96,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/FluentMigrator.Console/FluentMigrator.Console.csproj'
-    arguments: '-c $(buildConfiguration) -r any -o "$(artifactStagingDirectory)/publish/tools/net461/any" -p:Platform=AnyCpu -p:TargetFramework=net461 -p:Version=$(assemblyVersion)'
+    arguments: '-c $(buildConfiguration) -r any -o "$(Build.ArtifactStagingDirectory)/publish/tools/net461/any" -p:Platform=AnyCpu -p:TargetFramework=net461 -p:Version=$(assemblyVersion)'
     zipAfterPublish: false
     modifyOutputPath: false
 
@@ -105,18 +105,18 @@ steps:
     command: 'pack'
     packagesToPack: 'publish/FluentMigrator.Console.nuspec'
     versioningScheme: 'byBuildNumber'
-    buildProperties: '-OutputDirectory "$(artifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
+    buildProperties: '-OutputDirectory "$(Build.ArtifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
 
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: 'publish/FluentMigrator.Tools.nuspec'
     versioningScheme: 'byBuildNumber'
-    buildProperties: '-OutputDirectory "$(artifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
+    buildProperties: '-OutputDirectory "$(Build.ArtifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
 
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(artifactStagingDirectory)/**/*.nupkg;!$(artifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'f115edaf-9327-4e7d-b110-b8479c7c3a1b'
