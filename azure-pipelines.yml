@@ -100,17 +100,23 @@ steps:
     zipAfterPublish: false
     modifyOutputPath: false
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'publish'
+    Contents: '**/*.nuspec'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/publish'
+
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: 'publish/FluentMigrator.Console.nuspec'
+    packagesToPack: '$(Build.ArtifactStagingDirectory)/publish/FluentMigrator.Console.nuspec'
     versioningScheme: 'byBuildNumber'
     buildProperties: '-OutputDirectory "$(Build.ArtifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
 
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: 'publish/FluentMigrator.Tools.nuspec'
+    packagesToPack: '$(Build.ArtifactStagingDirectory)/publish/FluentMigrator.Tools.nuspec'
     versioningScheme: 'byBuildNumber'
     buildProperties: '-OutputDirectory "$(Build.ArtifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
 
