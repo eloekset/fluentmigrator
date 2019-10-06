@@ -46,36 +46,14 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/p:Version="$(assemblyVersion)" /p:AssemblyFileVersion="$(assemblyFileVersion)" /p:AssemblyInformationalVersion="$(build.buildNumber)"'
 
-#- task: DotNetCoreCLI@2
-#  inputs:
-#    command: 'build'
-#    projects: '**/FluentMigrator.sln'
-#    arguments: '-p:Platform="$(buildPlatform)" -p:Configuration="$(buildConfiguration)" -p:Version="$(assemblyVersion)" "-p:AssemblyFileVersion="$(assemblyFileVersion)" -p:AssemblyInformationalVersion="$(build.buildNumber)"'
-
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-#- task: DotNetCoreCLI@2
-#  inputs:
-#    command: 'pack'
-#    packagesToPack: '**/FluentMigrator.sln'
-#    nobuild: false
-#    includesymbols: true
-#    versioningScheme: 'off'
-#    buildProperties: ' -p:Version=$(build.buildNumber)'
-
 - task: CmdLine@2
   inputs:
     script: 'dotnet pack $(Build.SourcesDirectory)\FluentMigrator.sln --output $(Build.ArtifactStagingDirectory) --include-symbols -p:Configuration=$(buildConfiguration) -p:Version=$(build.buildNumber) --verbosity Detailed'
-
-#- task: NuGetCommand@2
-#  inputs:
-#    command: 'pack'
-#    packagesToPack: '**/FluentMigrator.sln'
-#    versioningScheme: 'byBuildNumber'
-#    includeSymbols: true
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -123,13 +101,6 @@ steps:
     packagesToPack: '$(Build.ArtifactStagingDirectory)/publish/FluentMigrator.Tools.nuspec'
     versioningScheme: 'byBuildNumber'
     buildProperties: '-OutputDirectory "$(Build.ArtifactStagingDirectory)/output" -Properties Configuration=$(buildConfiguration)'
-
-#- task: NuGetCommand@2
-#  inputs:
-#    command: 'push'
-#    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-#    nuGetFeedType: 'internal'
-#    publishVstsFeed: 'f115edaf-9327-4e7d-b110-b8479c7c3a1b'
 
 - task: PublishBuildArtifacts@1
   inputs:
