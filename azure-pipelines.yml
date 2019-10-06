@@ -57,14 +57,18 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
+#- task: DotNetCoreCLI@2
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**/FluentMigrator.sln'
+#    nobuild: false
+#    includesymbols: true
+#    versioningScheme: 'off'
+#    buildProperties: ' -p:Version=$(build.buildNumber)'
+
+- task: CmdLine@2
   inputs:
-    command: 'pack'
-    packagesToPack: '**/FluentMigrator.sln'
-    nobuild: false
-    includesymbols: true
-    versioningScheme: 'off'
-    buildProperties: ' -p:Version=$(build.buildNumber)'
+    script: 'dotnet pack $(solution) --output $(Build.ArtifactStagingDirectory) --include-symbols -p:Configuration=$(buildConfiguration) -p:Version=$(build.buildNumber) --verbosity Detailed'
 
 #- task: NuGetCommand@2
 #  inputs:
