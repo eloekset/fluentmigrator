@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentMigrator.DemoNuGet.DummyLibrary", "src\FluentMigrator.DemoNuGet.DummyLibrary\FluentMigrator.DemoNuGet.DummyLibrary.csproj", "{16E299B8-6FAA-49B8-8138-974F6A48A5E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentMigrator.DemoNuGet.TestApp", "src\FluentMigrator.DemoNuGet.TestApp\FluentMigrator.DemoNuGet.TestApp.csproj", "{DBBC477F-95E6-4C0F-93E8-F458F2CF961C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16E299B8-6FAA-49B8-8138-974F6A48A5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E299B8-6FAA-49B8-8138-974F6A48A5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E299B8-6FAA-49B8-8138-974F6A48A5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E299B8-6FAA-49B8-8138-974F6A48A5E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBC477F-95E6-4C0F-93E8-F458F2CF961C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBC477F-95E6-4C0F-93E8-F458F2CF961C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBC477F-95E6-4C0F-93E8-F458F2CF961C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBC477F-95E6-4C0F-93E8-F458F2CF961C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDBD960C-22F8-43FB-BBC7-CBCCD20A530E}
+	EndGlobalSection
+EndGlobal

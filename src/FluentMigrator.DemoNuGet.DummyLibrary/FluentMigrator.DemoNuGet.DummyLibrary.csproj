@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha1</Version>
+    <Company>FluentMigrator Project</Company>
+    <Product>FluentMigrator</Product>
+    <Authors>Eivind Gussiås Løkseth</Authors>
+    <Description>This is a dummy NuGet package to test promotion of packages using the views feature of Azure Artifacts.
+The package doesn't contain anything useful.</Description>
+    <Copyright>The FluentMigrator project 2008-2020</Copyright>
+    <PackageProjectUrl>https://github.com/fluentmigrator/fluentmigrator/wiki</PackageProjectUrl>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/eloekset/fluentmigrator.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>First alpha release to test promotion from local to prerelease view.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+</Project>
