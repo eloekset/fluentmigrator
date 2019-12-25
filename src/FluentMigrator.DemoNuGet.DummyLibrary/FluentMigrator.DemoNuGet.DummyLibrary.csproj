@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha1</Version>
+    <Version>1.1.0</Version>
     <Company>FluentMigrator Project</Company>
     <Product>FluentMigrator</Product>
     <Authors>Eivind Gussiås Løkseth</Authors>
@@ -14,9 +14,9 @@ The package doesn't contain anything useful.</Description>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/eloekset/fluentmigrator.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>First alpha release to test promotion from local to prerelease view.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>1.1 release to test promotion from local to prerelease view, and then to release view. The test postfixing the NuGet package version with -alpha1 didn't work as expected when promoting to the release view.</PackageReleaseNotes>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
 
 </Project>

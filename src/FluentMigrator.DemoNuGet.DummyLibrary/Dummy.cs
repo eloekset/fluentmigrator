@@ -12,7 +12,7 @@ namespace FluentMigrator.DemoNuGet.DummyLibrary
         {
             get
             {
-                return $"The alpha of version {Version}";
+                return $"Version {Version}";
             }
         }
     }
